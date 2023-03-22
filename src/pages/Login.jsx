@@ -1,18 +1,24 @@
-import Avatar from "@mui/material/Avatar";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import LockIcon from "@mui/icons-material/Lock";
-import image from "../assets/result.svg";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { Formik, From } from "formik";
-import { TextField } from "@mui/material";
+import Avatar from "@mui/material/Avatar"
+import Box from "@mui/material/Box"
+import Container from "@mui/material/Container"
+import Grid from "@mui/material/Grid"
+import Typography from "@mui/material/Typography"
+import LockIcon from "@mui/icons-material/Lock"
+import image from "../assets/result.svg"
+import { Link, useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { Formik, Form } from "formik"
+import TextField from "@mui/material/TextField"
+import { TouchAppRounded } from "@mui/icons-material"
+import { object, string, number, date, InferType } from 'yup';
 
 const Login = () => {
-  const navigate = useNavigate();
-  const { currentUser, error } = useSelector((state) => state?.auth);
+  const navigate = useNavigate()
+  const { currentUser, error } = useSelector((state) => state?.auth)
+
+  const loginScheme = object({
+    email: string().
+  })
 
   return (
     <Container maxWidth="lg">
@@ -50,24 +56,35 @@ const Login = () => {
           >
             Login
           </Typography>
+
           <Formik
             initialValues={{ email: "", password: "" }}
-            validationScheme={loginSceheme}
+            validationSchema={loginScheme}
             onSubmit={(values, actions) => {
-              actions.setSubmitting(false);
-              //TODO login(values) POST isteği
+              //TODO login(values)  POST istegi
               //TODO navigate
-              actions.resetForm();
-              actions.setSubmitting(false);
+              actions.resetForm()
+              actions.setSubmitting(false)
             }}
           >
-            {({values, handleChanges, handleBlur }) => {
-<From>
-  <Box>
-    <TextField/>
-  </Box>
-</From>
-            }}
+            {({ values, handleChange, handleBlur, errors }) => (
+              <Form>
+                <Box>
+                  <TextField
+                    label="Email"
+                    name="email"
+                    id="email"
+                    type="email"
+                    variant="outlined"
+                    value={values?.email || ""}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={TouchAppRounded.email && Boolean(errors.email)}
+                    helperText={TouchAppRounded.email && errors.email}
+                  />
+                </Box>
+              </Form>
+            )}
           </Formik>
 
           <Box sx={{ textAlign: "center", mt: 2 }}>
@@ -82,7 +99,8 @@ const Login = () => {
         </Grid>
       </Grid>
     </Container>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
+
