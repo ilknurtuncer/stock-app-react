@@ -17,7 +17,7 @@ const Login = () => {
   const { currentUser, error } = useSelector((state) => state?.auth)
 
   const loginScheme = object({
-    email: string().
+    email: string().email().required("Bu alan zorunludur")
   })
 
   return (
