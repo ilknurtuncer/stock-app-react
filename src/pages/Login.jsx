@@ -30,7 +30,7 @@ const Login = () => {
       .matches(/\d+/, "Password bir sayı içermelidir")
       .matches(/[a-z]/, "Password bir küçük harf içermelidir")
       .matches(/[A-Z]/, "Password bir büyük harf içermelidir")
-      .matches(/[!,?{}><%&$#£+-.]+/, "Password bir özel karakter içermelidir"),
+      // .matches(/[!,?{}><%&$#£+-.]+/, "Password bir özel karakter içermelidir"),
   })
 
   return (
