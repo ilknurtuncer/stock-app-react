@@ -47,7 +47,7 @@ const icons = [
   {
     title: "Admin Panel",
     icon: <SupervisorAccountIcon />,
-    url: "https://12180.fullstack.clarusway.com/admin",
+    url: "https://12304.fullstack.clarusway.com/admin",
   },
 ];
 
@@ -59,7 +59,7 @@ const MenuListItems = () => {
         {icons?.map((item, index) => (
           <ListItem key={index} disablePadding>
             {item.url.includes("http") && (
-              <ListItemButton to="https://12180.fullstack.clarusway.com/admin">
+              <ListItemButton to="https://12304.fullstack.clarusway.com/admin">
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.title} />
               </ListItemButton>
